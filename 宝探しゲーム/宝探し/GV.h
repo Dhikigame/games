@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>*/
-#define PI 3.141592654
+//#define PI 3.141592654
 
 /*namespace Menuinfo{
 
@@ -34,10 +34,10 @@ GLOBAL int Menucount;
 //GLOBAL int Count = 0;
 
 GLOBAL int FontHandle;
-GLOBAL int Handle;//‰æ–Ê‚Å“®‚©‚·ƒ|ƒCƒ“ƒ^FREE‘fŞ
-GLOBAL int Draw;//”wŒiFREE‘fŞ
-GLOBAL int Draw2;//”wŒiFREE‘fŞ
-GLOBAL int box;//©•ª‚Å•`‚¢‚½•ó” ‚ÌŠGi‰ºè•³j
+GLOBAL int Handle;//ç”»é¢ã§å‹•ã‹ã™ãƒã‚¤ãƒ³ã‚¿FREEç´ æ
+GLOBAL int Draw;//èƒŒæ™¯FREEç´ æ
+GLOBAL int Draw2;//èƒŒæ™¯FREEç´ æ
+GLOBAL int box;//è‡ªåˆ†ã§æã„ãŸå®ç®±ã®çµµï¼ˆä¸‹æ‰‹ç³ï¼‰
 GLOBAL int nobox;
 GLOBAL int yesbox;
 GLOBAL int bombbox;
@@ -45,12 +45,12 @@ GLOBAL int Green;
 GLOBAL int White;
 
 
-GLOBAL int x, y;//ƒ|ƒCƒ“ƒ^À•W
+GLOBAL int x, y;//ãƒã‚¤ãƒ³ã‚¿åº§æ¨™
 
 /*GLOBAL Menuinfo::Menutype Menucount;*/
 
 GLOBAL int boxopen[6];
 
-GLOBAL int game;//game‚ª0‚Ì‚Æ‚«‚©‚ñ‚½‚ñA1‚Ì‚Æ‚«‚Ó‚Â‚¤A2‚Ì‚Æ‚«‚Ş‚¸‚©‚µ‚¢
+GLOBAL int game;//gameãŒ0ã®ã¨ãã‹ã‚“ãŸã‚“ã€1ã®ã¨ããµã¤ã†ã€2ã®ã¨ãã‚€ãšã‹ã—ã„
 
 
