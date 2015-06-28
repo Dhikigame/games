@@ -1,4 +1,4 @@
-//‰Šú‰»
+//èµ·å‹•å¾ŒåˆæœŸåŒ–
 GLOBAL void ini();
 GLOBAL void load();
 //Menu
