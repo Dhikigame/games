@@ -6,13 +6,12 @@
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int){
 	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK); //ウィンドウモード変更と初期化と裏画面設定
 
-	init();
+	ini();
 	load();
-	
+	Menucount = 1;
 
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0){
-		//ClsDrawScreen();
-
+		ClsDrawScreen();
 		
 		if (Key[KEY_INPUT_RIGHT] >= 1){ // 右キーが押されていたら
 			x = x + 5;                       // 右へ移動
@@ -36,12 +35,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int){
 		case 6:Help(); break;
 		}
 
-		Update();	//更新
-		FPSDraw();	//描画
-		Wait();		//待機
-
-		if (Key[KEY_INPUT_ESCAPE] == 1)
-		DxLib_End(); // DXライブラリ終了処理
 	}
 	DxLib_End(); // DXライブラリ終了処理
 	return 0;

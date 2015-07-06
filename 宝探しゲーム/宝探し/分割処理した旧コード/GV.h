@@ -7,7 +7,6 @@
 #include <windows.h>
 #include "DxLib.h"
 
-#include "FPS.h"
 #include "func.h"
 #include "Menu.h"
 #include "box.h"
@@ -35,9 +34,6 @@ GLOBAL int Menucount;
 //GLOBAL int Count = 0;
 
 GLOBAL int FontHandle;
-GLOBAL int FontMenuHandle;
-GLOBAL int FontBoxHandle;
-GLOBAL int FontBoxHandleN;
 GLOBAL int Handle;//画面で動かすポインタFREE素材
 GLOBAL int Draw;//背景FREE素材
 GLOBAL int Draw2;//背景FREE素材
@@ -52,6 +48,8 @@ GLOBAL int White;
 GLOBAL int x, y;//ポインタ座標
 
 /*GLOBAL Menuinfo::Menutype Menucount;*/
+
+GLOBAL int boxopen[6];
 
 GLOBAL int game;//gameが0のときかんたん、1のときふつう、2のときむずかしい
 

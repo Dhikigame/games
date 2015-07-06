@@ -1,6 +1,6 @@
 # games
 作ったゲーム(make games)
-更新：2015/06/29
+更新：2015/07/06
 # HP
 http://dhikigame.sakura.ne.jp/
 #概要

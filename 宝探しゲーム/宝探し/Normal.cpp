@@ -3,160 +3,307 @@
 
 
 void Normal(){
+
 	if (boxcount == 0){
-		boxstore1 = box;
-		boxstore2 = box;
-		boxstore3 = box;
-		boxstore4 = box;
-		boxstore5 = box;
-		boxstore6 = box;
+		for (i = 0; i <= 2; i++){
+			for (j = 0; j <= 2; j++){
+					boxstoreN[i][j] = box;//1ゲームごとに初期に”閉じた宝箱”をセット
+			}
+		}
 	}
 	DrawRotaGraph(320, 240, 1.0, 0.0, Draw2, TRUE);
-	DrawRotaGraph(120, 110, 1.0, 0.0, boxstore1, TRUE);
-	DrawRotaGraph(320, 110, 1.0, 0.0, boxstore2, TRUE);
-	DrawRotaGraph(520, 110, 1.0, 0.0, boxstore3, TRUE);
-	DrawRotaGraph(120, 300, 1.0, 0.0, boxstore4, TRUE);
-	DrawRotaGraph(320, 300, 1.0, 0.0, boxstore5, TRUE);
-	DrawRotaGraph(520, 300, 1.0, 0.0, boxstore6, TRUE);
-	DrawRotaGraph(x, y, 1.0, 0.0, Handle, TRUE);
-	//DrawFormatString( 0, 450, White, "座標[%d,%d],%d,%d,%d,%d,%d,%d", x, y, boxopen[0],boxopen[1],boxopen[2],boxopen[3],boxopen[4],boxopen[5]); 
-	DrawFormatString(280, 20, Green, "%s", infor);
-	DrawFormatString(35, 415, White, "%d/10回目", gamecount);
-	DrawFormatString(35, 435, White, "おてつき　%d/1", ote);
-	//67502085はyesboxのときの乱数、67436548はnoboxのときの乱数(新しい環境で制作しなおしたので値が変わっている)
-	if (x >= 30 && x <= 210 && y >= 35 && 185 >= y&&Key[KEY_INPUT_SPACE] == 1 && boxflag == 0){
+	/*
+	宝箱を描画　右が配列の場合の配置
+	□　□　□　[0][0] [0][1] [0][2]
+	□　□　□　[1][0] [1][1] [1][2]
+	□　□　□  [2][0] [2][1] [2][2]
+	*/
+	for (i = 0; i <= 2; i++){
+		k = 130*i;
+		for (j = 0; j <= 2; j++){
+			l = 200 * j;
+			if (j== 0)
+				DrawRotaGraph(120+l, 90+k, 0.8, 0.0, boxstoreN[i][j], TRUE);
+			if (j== 1)
+				DrawRotaGraph(120+l, 90+k, 0.8, 0.0, boxstoreN[i][j], TRUE);
+			if (j == 2)
+				DrawRotaGraph(120+l, 90+k, 0.8, 0.0, boxstoreN[i][j], TRUE);
+		}
+	}
+	/*デバッグ用　Boxsetのランダム配置
+	if (Key[KEY_INPUT_A] == 1){
+		BoxsetN();
+	}
+	*/
 
-		if (boxopen[0] == 67502085){
-			boxstore1 = yesbox;
+	//DrawRotaGraph(x, y, 1.0, 0.0, Handle, TRUE);
+
+	//デバッグ用　boxopenNの配置確認
+	//DrawFormatString(50, 450, Green, "座標[%d,%d]", x, y);
+	//DrawFormatString(250, 420, White, "%d %d %d", boxopenN[0][0], boxopenN[0][1], boxopenN[0][2]);
+	//DrawFormatString(250, 440, White, "%d %d %d", boxopenN[1][0], boxopenN[1][1], boxopenN[1][2]);
+	//DrawFormatString(250, 460, White, "%d %d %d", boxopenN[2][0], boxopenN[2][1], boxopenN[2][2]);
+	//DrawFormatString(300, 460, White, "%d %d", i, j);
+	
+	DrawFormatString(280, 20, Green, "%s", infor);//ヒント出力　近くに反応！または遠くに反応！
+	DrawFormatString(35, 415, White, "%d/10回目", gamecount);//１０回ゲーム行ったときの何回か
+	DrawFormatString(35, 435, White, "おてつき　%d/2", ote);//おてつきは２回まで(実装変更されました)
+	//1はyesboxのときの乱数、0はnoboxのときの乱数(かんたんとは実装が違う)
+
+	if (boxKeystoreN[0][0] == 0)
+		DrawStringToHandle(95, 45, "Qキー", White, FontBoxHandleN);
+	else if (boxKeystoreN[0][0] == 1)
+		DrawStringToHandle(95, 30, "Qキー", White, FontBoxHandleN);
+	if (boxKeystoreN[0][1] == 0)
+		DrawStringToHandle(295, 45, "Wキー", White, FontBoxHandleN);
+	else if (boxKeystoreN[0][1] == 1)
+		DrawStringToHandle(295, 30, "Wキー", White, FontBoxHandleN);
+	if (boxKeystoreN[0][2] == 0)
+		DrawStringToHandle(495, 45, "Eキー", White, FontBoxHandleN);
+	else if (boxKeystoreN[0][2] == 1)
+		DrawStringToHandle(495, 30, "Eキー", White, FontBoxHandleN);
+
+	if (boxKeystoreN[1][0] == 0)
+		DrawStringToHandle(95, 175, "Aキー", White, FontBoxHandleN);
+	else if (boxKeystoreN[1][0] == 1)
+		DrawStringToHandle(95, 160, "Aキー", White, FontBoxHandleN);
+	if (boxKeystoreN[1][1] == 0)
+		DrawStringToHandle(295, 175, "Sキー", White, FontBoxHandleN);
+	else if (boxKeystoreN[1][1] == 1)
+		DrawStringToHandle(295, 160, "Sキー", White, FontBoxHandleN);
+	if (boxKeystoreN[1][2] == 0)
+		DrawStringToHandle(495, 175, "Dキー", White, FontBoxHandleN);
+	else if (boxKeystoreN[1][2] == 1)
+		DrawStringToHandle(495, 160, "Dキー", White, FontBoxHandleN);
+
+	if (boxKeystoreN[2][0] == 0)
+		DrawStringToHandle(95, 305, "Zキー", White, FontBoxHandleN);
+	else if (boxKeystoreN[2][0] == 1)
+		DrawStringToHandle(95, 290, "Zキー", White, FontBoxHandleN);
+	if (boxKeystoreN[2][1] == 0)
+		DrawStringToHandle(295, 305, "Xキー", White, FontBoxHandleN);
+	else if (boxKeystoreN[2][1] == 1)
+		DrawStringToHandle(295, 290, "Xキー", White, FontBoxHandleN);
+	if (boxKeystoreN[2][2] == 0)
+		DrawStringToHandle(495, 305, "Cキー", White, FontBoxHandleN);
+	else if (boxKeystoreN[2][2] == 1)
+		DrawStringToHandle(495, 290, "Cキー", White, FontBoxHandleN);
+
+	//それぞれキーで選択したときyesboxかnoboxか判定し、おてつきの場合はinforでヒント出す
+	if (Key[KEY_INPUT_Q] == 1 && boxflag == 0){
+
+		if (boxopenN[0][0] == 1){
+			boxstoreN[0][0] = yesbox;
 			yes = 1;
 		}
-		if (boxopen[0] == 67436548){
-			boxstore1 = nobox;
+		if (boxopenN[0][0] == 0){
+			boxstoreN[0][0] = nobox;
 		}
 		boxcount++;
-		if (boxcount == 1 && x >= 30 && x <= 210 && y >= 35 && 185 >= y&&Key[KEY_INPUT_SPACE] == 1){
+		boxKeystoreN[0][0] = 1;
+		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_Q] == 1){
 
-			if (boxopen[1] == 67502085 || boxopen[3] == 67502085){
+			if (boxopenN[0][1] == 1 || boxopenN[1][0] == 1){
 				infor = "近くに反応！"; ote++;
 			}
-			if (boxopen[2] == 67502085 || boxopen[4] == 67502085 || boxopen[5] == 67502085){
+			else if (boxopenN[0][0] == 1)
+				infor = " ";
+			else
 				infor = "遠くに反応！"; ote++;
-			}
-
 		}
 	}
 
 
-	if (x >= 230 && x <= 410 && y >= 35 && 185 >= y&&Key&&Key[KEY_INPUT_SPACE] == 1 && boxflag == 0){
+	if (Key[KEY_INPUT_W] == 1 && boxflag == 0){
 
-		if (boxopen[1] == 67502085){
-			boxstore2 = yesbox;
+		if (boxopenN[0][1] == 1){
+			boxstoreN[0][1] = yesbox;
 			yes = 1;
 		}
-		if (boxopen[1] == 67436548){
-			boxstore2 = nobox;
+		if (boxopenN[0][1] == 0){
+			boxstoreN[0][1] = nobox;
 		}
 		boxcount++;
-		if (boxcount == 1 && x >= 230 && x <= 410 && y >= 35 && 185 >= y&&Key[KEY_INPUT_SPACE] == 1){
-			if (boxopen[0] == 67502085 || boxopen[2] == 67502085 || boxopen[4] == 67502085){
+		boxKeystoreN[0][1] = 1;
+		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_W] == 1){
+
+			if (boxopenN[0][0] == 1 || boxopenN[1][1] == 1 || boxopenN[0][2] == 1){
 				infor = "近くに反応！"; ote++;
 			}
-			if (boxopen[3] == 67502085 || boxopen[5] == 67502085){
+			else if (boxopenN[0][1] == 1)
+				infor = " ";
+			else
 				infor = "遠くに反応！"; ote++;
-			}
-
 		}
 	}
 
-	if (x >= 430 && x <= 610 && y >= 35 && 185 >= y&&Key[KEY_INPUT_SPACE] == 1 && boxflag == 0){
+	if (Key[KEY_INPUT_E] == 1 && boxflag == 0){
 
-		if (boxopen[2] == 67502085){
-			boxstore3 = yesbox;
+		if (boxopenN[0][2] == 1){
+			boxstoreN[0][2] = yesbox;
 			yes = 1;
 		}
-		if (boxopen[2] == 67436548){
-			boxstore3 = nobox;
+		if (boxopenN[0][2] == 0){
+			boxstoreN[0][2] = nobox;
 		}
 		boxcount++;
-		if (boxcount == 1 && x >= 430 && x <= 610 && y >= 35 && 185 >= y&&Key[KEY_INPUT_SPACE] == 1){
-			if (boxopen[1] == 67502085 || boxopen[5] == 67502085){
+		boxKeystoreN[0][2] = 1;
+		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_E] == 1){
+
+			if (boxopenN[0][1] == 1 || boxopenN[1][2] == 1){
 				infor = "近くに反応！"; ote++;
 			}
-			if (boxopen[0] == 67502085 || boxopen[3] == 67502085 || boxopen[4] == 67502085){
+			else if (boxopenN[0][2] == 1)
+				infor = " ";
+			else
 				infor = "遠くに反応！"; ote++;
-			}
-
 		}
 	}
 
-	if (x >= 30 && x <= 210 && y >= 225 && 375 >= y&&Key[KEY_INPUT_SPACE] == 1 && boxflag == 0){
+	if (Key[KEY_INPUT_A] == 1 && boxflag == 0){
 
-		if (boxopen[3] == 67502085){
-			boxstore4 = yesbox;
+		if (boxopenN[1][0] == 1){
+			boxstoreN[1][0] = yesbox;
 			yes = 1;
 		}
-		if (boxopen[3] == 67436548){
-			boxstore4 = nobox;
+		if (boxopenN[1][0] == 0){
+			boxstoreN[1][0] = nobox;
 		}
 		boxcount++;
-		if (boxcount == 1 && x >= 30 && x <= 210 && y >= 225 && 375 >= y&&Key[KEY_INPUT_SPACE] == 1){
-			if (boxopen[0] == 67502085 || boxopen[4] == 67502085){
+		boxKeystoreN[1][0] = 1;
+		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_A] == 1){
+
+			if (boxopenN[0][0] == 1 || boxopenN[1][1] == 1 || boxopenN[2][0] == 1){
 				infor = "近くに反応！"; ote++;
 			}
-			if (boxopen[1] == 67502085 || boxopen[2] == 67502085 || boxopen[5] == 67502085){
+			else if (boxopenN[1][0] == 1)
+				infor = " ";
+			else
 				infor = "遠くに反応！"; ote++;
-			}
-
 		}
 	}
 
-	if (x >= 230 && x <= 410 && y >= 225 && 375 >= y&&Key[KEY_INPUT_SPACE] == 1 && boxflag == 0){
+	if (Key[KEY_INPUT_S] == 1 && boxflag == 0){
 
-		if (boxopen[4] == 67502085){
-			boxstore5 = yesbox;
+		if (boxopenN[1][1] == 1){
+			boxstoreN[1][1] = yesbox;
 			yes = 1;
 		}
-		if (boxopen[4] == 67436548){
-			boxstore5 = nobox;
+		if (boxopenN[1][1] == 0){
+			boxstoreN[1][1] = nobox;
 		}
 		boxcount++;
-		if (boxcount == 1 && x >= 230 && x <= 410 && y >= 225 && 375 >= y&&Key[KEY_INPUT_SPACE] == 1){
-			if (boxopen[1] == 67502085 || boxopen[3] == 67502085 || boxopen[5] == 67502085){
+		boxKeystoreN[1][1] = 1;
+		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_S] == 1){
+
+			if (boxopenN[0][1] == 1 || boxopenN[1][0] == 1 || boxopenN[1][2] == 1 || boxopenN[2][1] == 1){
 				infor = "近くに反応！"; ote++;
 			}
-			if (boxopen[0] == 67502085 || boxopen[2] == 67502085){
+			else if (boxopenN[1][1] == 1)
+				infor = " ";
+			else
 				infor = "遠くに反応！"; ote++;
-			}
-
 		}
 	}
 
-	if (x >= 430 && x <= 610 && y >= 225 && 375 >= y&&Key[KEY_INPUT_SPACE] == 1 && boxflag == 0){
+	if (Key[KEY_INPUT_D] == 1 && boxflag == 0){
 
-		if (boxopen[5] == 67502085){
-			boxstore6 = yesbox;
+		if (boxopenN[1][2] == 1){
+			boxstoreN[1][2] = yesbox;
 			yes = 1;
 		}
-		if (boxopen[5] == 67436548){
-			boxstore6 = nobox;
+		if (boxopenN[1][2] == 0){
+			boxstoreN[1][2] = nobox;
 		}
 		boxcount++;
-		if (boxcount == 1 && x >= 430 && x <= 610 && y >= 225 && 375 >= y&&Key[KEY_INPUT_SPACE] == 1){
-			if (boxopen[2] == 67502085 || boxopen[4] == 67502085){
+		boxKeystoreN[1][2] = 1;
+		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_D] == 1){
+
+			if (boxopenN[1][1] == 1 || boxopenN[0][2] == 1 || boxopenN[2][2] == 1){
 				infor = "近くに反応！"; ote++;
 			}
-			if (boxopen[0] == 67502085 || boxopen[1] == 67502085 || boxopen[3] == 67502085){
+			else if (boxopenN[1][2] == 1)
+				infor = " ";
+			else
 				infor = "遠くに反応！"; ote++;
-			}
-
 		}
 	}
 
+	if (Key[KEY_INPUT_Z] == 1 && boxflag == 0){
+
+		if (boxopenN[2][0] == 1){
+			boxstoreN[2][0] = yesbox;
+			yes = 1;
+		}
+		if (boxopenN[2][0] == 0){
+			boxstoreN[2][0] = nobox;
+		}
+		boxcount++;
+		boxKeystoreN[2][0] = 1;
+		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_Z] == 1){
+
+			if (boxopenN[1][0] == 1 || boxopenN[2][1] == 1){
+				infor = "近くに反応！"; ote++;
+			}
+			else if (boxopenN[2][0] == 1)
+				infor = " ";
+			else
+				infor = "遠くに反応！"; ote++;
+		}
+	}
+
+	if (Key[KEY_INPUT_X] == 1 && boxflag == 0){
+
+		if (boxopenN[2][1] == 1){
+			boxstoreN[2][1] = yesbox;
+			yes = 1;
+		}
+		if (boxopenN[2][1] == 0){
+			boxstoreN[2][1] = nobox;
+		}
+		boxcount++;
+		boxKeystoreN[2][1] = 1;
+		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_Z] == 1){
+
+			if (boxopenN[2][0] == 1 || boxopenN[1][1] == 1 || boxopenN[2][2] == 1){
+				infor = "近くに反応！"; ote++;
+			}
+			else if (boxopenN[2][1] == 1)
+				infor = " ";
+			else
+				infor = "遠くに反応！"; ote++;
+		}
+	}
+
+	if (Key[KEY_INPUT_C] == 1 && boxflag == 0){
+
+		if (boxopenN[2][2] == 1){
+			boxstoreN[2][2] = yesbox;
+			yes = 1;
+		}
+		if (boxopenN[2][2] == 0){
+			boxstoreN[2][2] = nobox;
+		}
+		boxcount++;
+		boxKeystoreN[2][2] = 1;
+		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_C] == 1){
+
+			if (boxopenN[2][1] == 1 || boxopenN[1][2] == 1){
+				infor = "近くに反応！"; ote++;
+			}
+			else if (boxopenN[2][2] == 1)
+				infor = " ";
+			else
+				infor = "遠くに反応！"; ote++;
+		}
+	}
+
+	//yesbox見つけた場合とおてつきすべて使って見つからなかった場合に文字列を出力
 	if (yes == 1 && boxcount == 1 && x >= -99999 && y >= -99999){
 		boxflag = 1;
 		DrawFormatString(200, 450, Green, "宝箱発見！（Enterキーで進む）");
 		if (Key[KEY_INPUT_RETURN] == 1){
-			Boxset();
+			BoxsetN();
 			boxcount = 0;
 			boxflag = 0;
 			yes = 0;
@@ -164,14 +311,23 @@ void Normal(){
 			gamecount++;
 			ote = 0;
 			infor = "   ";
+			boxKeystoreN[0][0] = 0;
+			boxKeystoreN[0][1] = 0;
+			boxKeystoreN[0][2] = 0;
+			boxKeystoreN[1][0] = 0;
+			boxKeystoreN[1][1] = 0;
+			boxKeystoreN[1][2] = 0;
+			boxKeystoreN[2][0] = 0;
+			boxKeystoreN[2][1] = 0;
+			boxKeystoreN[2][2] = 0;
 		}
 	}
 
-	if (yes == 1 && boxcount == 2 && x >= -99999 && y >= -99999){
+	if (yes == 1 && boxcount >= 2 && boxcount <= 3 && x >= -99999 && y >= -99999){
 		boxflag = 1;
 		DrawFormatString(200, 450, Green, "宝箱は見つかったよ！（Enterキーで進む）");
 		if (Key[KEY_INPUT_RETURN] == 1){
-			Boxset();
+			BoxsetN();
 			boxcount = 0;
 			boxflag = 0;
 			yes = 0;
@@ -179,24 +335,44 @@ void Normal(){
 			gamecount++;
 			ote = 0;
 			infor = "   ";
+			boxKeystoreN[0][0] = 0;
+			boxKeystoreN[0][1] = 0;
+			boxKeystoreN[0][2] = 0;
+			boxKeystoreN[1][0] = 0;
+			boxKeystoreN[1][1] = 0;
+			boxKeystoreN[1][2] = 0;
+			boxKeystoreN[2][0] = 0;
+			boxKeystoreN[2][1] = 0;
+			boxKeystoreN[2][2] = 0;
 		}
 	}
 
-	if (yes == 0 && boxcount == 2 && x >= -99999 && y >= -99999){
+	if (yes == 0 && boxcount == 3 && x >= -99999 && y >= -99999){
 		boxflag = 1;
 		DrawFormatString(200, 450, Green, "宝箱は見つからなかった・・・（Enterキーで進む）");
 		if (Key[KEY_INPUT_RETURN] == 1){
-			Boxset();
+			BoxsetN();
 			boxcount = 0;
 			boxflag = 0;
 			yes = 0;
 			ote = 0;
 			gamecount++;
 			infor = "   ";
+			boxKeystoreN[0][0] = 0;
+			boxKeystoreN[0][1] = 0;
+			boxKeystoreN[0][2] = 0;
+			boxKeystoreN[1][0] = 0;
+			boxKeystoreN[1][1] = 0;
+			boxKeystoreN[1][2] = 0;
+			boxKeystoreN[2][0] = 0;
+			boxKeystoreN[2][1] = 0;
+			boxKeystoreN[2][2] = 0;
 		}
 	}
 
+	//10回ゲーム終わったら結果画面に移行
 	if (gamecount == 11){
 		Menucount = 5;
 	}
+
 }

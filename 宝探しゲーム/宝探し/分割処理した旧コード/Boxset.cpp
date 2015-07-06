@@ -1,7 +1,6 @@
 #include "GV.h"
 
-//yesboxまたはnoboxをせっていするためのモジュール
-//Easy
+
 void Boxset(){
 	//6つの箱に0～5までそれぞれかぶらない違う値を入れる　参考サイト http://q.hatena.ne.jp/1307178107 
 	for (i = 0; i <= 5; i++){
@@ -64,34 +63,4 @@ void Boxset(){
 		boxopen[5] = nobox;
 	}
 
-}
-//Normal
-void BoxsetN(){
-	
-	for (i = 0; i <= 2; i++){
-		for (j = 0; j <= 2; j++){
-				boxopenN[i][j] = 0;//初期化
-			}
-		}
-
-	//3×3でセット
-		i = GetRand(2);
-		j = GetRand(2);
-		boxopenN[i][j] = 1;
-
-}
-//Hard
-void BoxsetH(){
-	//4×4でセット
-	i = GetRand(3);
-	j = GetRand(3);
-
-	boxopenN[i][j] = 1;//boxopenHが1のものがyesboxになる
-
-	for (i = 0; i <= 3; i++){
-		for (j = 0; j <= 3; j++){
-			if (boxopenN[i][j] != 1)
-				boxopenN[i][j] = 0;//boxopenHが1以外のものがnoboxになる
-		}
-	}
 }
