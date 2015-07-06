@@ -1,6 +1,6 @@
-typedef struct{
-	int a, b;       // À•WŠi”[—p•Ï”
-	char name[128]; // €–Ú–¼Ši”[—p•Ï”
+ typedef struct{
+        int a, b;       // åº§æ¨™æ ¼ç´ç”¨å¤‰æ•°
+        char name[128]; // é …ç›®åæ ¼ç´ç”¨å¤‰æ•°
 } MenuElement_t;
 
 
