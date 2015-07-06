@@ -24,3 +24,5 @@ GLOBAL int yes;//yesboxを見つけたときにyes=1にして宝箱は見つかったよ！と表示
 GLOBAL int hit;//何回yesboxを開けたか
 GLOBAL int gamecount;//10回ゲームしたときの何回か
 GLOBAL int ote;//おてつきの回数
+
+GLOBAL int musicstop;//1回だけ箱開けるときの効果音鳴らすためのフラグ

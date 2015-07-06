@@ -15,3 +15,9 @@ void load(){
 	Green = GetColor(0, 255, 0);
 	White = GetColor(255, 255, 255);
 }
+
+void sound(){
+	gamemusic = LoadSoundMem("メインテーマ.ogg");
+	boxopensound = LoadSoundMem("箱開封.ogg");
+	boxfoundsound = LoadSoundMem("宝発見.ogg");
+}

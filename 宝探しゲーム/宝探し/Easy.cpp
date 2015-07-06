@@ -66,8 +66,9 @@ void Easy(){
 
 	//それぞれキーで選択したときyesboxかnoboxか判定し、おてつきの場合はinforでヒント出す
 	if (Key[KEY_INPUT_A] == 1 && boxflag == 0){
-
+		
 		if (boxopen[0] == 67502085){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstore1 = yesbox;
 			yes = 1;
 		}
@@ -77,7 +78,7 @@ void Easy(){
 		boxcount++;
 		boxKeystore[0] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_A] == 1){
-
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopen[1] == 67502085 || boxopen[3] == 67502085){
 				infor = "近くに反応！"; ote++;
 			}
@@ -90,8 +91,9 @@ void Easy(){
 
 
 	if (Key[KEY_INPUT_S] == 1 && boxflag == 0){
-
+		
 		if (boxopen[1] == 67502085){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstore2 = yesbox;
 			yes = 1;
 		}
@@ -101,6 +103,7 @@ void Easy(){
 		boxcount++;
 		boxKeystore[1] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_S] == 1){
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopen[0] == 67502085 || boxopen[2] == 67502085 || boxopen[4] == 67502085){
 				infor = "近くに反応！"; ote++;
 			}
@@ -112,8 +115,9 @@ void Easy(){
 	}
 
 	if (Key[KEY_INPUT_D] == 1 && boxflag == 0){
-
+		
 		if (boxopen[2] == 67502085){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstore3 = yesbox;
 			yes = 1;
 		}
@@ -123,6 +127,7 @@ void Easy(){
 		boxcount++;
 		boxKeystore[2] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_D] == 1){
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopen[1] == 67502085 || boxopen[5] == 67502085){
 				infor = "近くに反応！"; ote++;
 			}
@@ -134,8 +139,9 @@ void Easy(){
 	}
 
 	if (Key[KEY_INPUT_Z] == 1 && boxflag == 0){
-
+		
 		if (boxopen[3] == 67502085){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstore4 = yesbox;
 			yes = 1;
 		}
@@ -145,6 +151,7 @@ void Easy(){
 		boxcount++;
 		boxKeystore[3] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_Z] == 1){
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopen[0] == 67502085 || boxopen[4] == 67502085){
 				infor = "近くに反応！"; ote++;
 			}
@@ -156,8 +163,9 @@ void Easy(){
 	}
 
 	if (Key[KEY_INPUT_X] == 1 && boxflag == 0){
-
+		
 		if (boxopen[4] == 67502085){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstore5 = yesbox;
 			yes = 1;
 		}
@@ -167,6 +175,7 @@ void Easy(){
 		boxcount++;
 		boxKeystore[4] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_X] == 1){
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopen[1] == 67502085 || boxopen[3] == 67502085 || boxopen[5] == 67502085){
 				infor = "近くに反応！"; ote++;
 			}
@@ -178,8 +187,9 @@ void Easy(){
 	}
 
 	if (Key[KEY_INPUT_C] == 1 && boxflag == 0){
-
+		
 		if (boxopen[5] == 67502085){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstore6 = yesbox;
 			yes = 1;
 		}
@@ -189,6 +199,7 @@ void Easy(){
 		boxcount++;
 		boxKeystore[5] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_C] == 1){
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopen[2] == 67502085 || boxopen[4] == 67502085){
 				infor = "近くに反応！"; ote++;
 			}
@@ -243,7 +254,10 @@ void Easy(){
 	}
 
 	if (yes == 0 && boxcount == 3 && x >= -99999 && y >= -99999){
+		if(musicstop == 0)
+		PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 		boxflag = 1;
+		musicstop = 1;
 		DrawFormatString(200, 450, Green, "宝箱は見つからなかった・・・（Enterキーで進む）");
 		if (Key[KEY_INPUT_RETURN] == 1){
 			Boxset();
@@ -253,6 +267,7 @@ void Easy(){
 			ote = 0;
 			gamecount++;
 			infor = "   ";
+			musicstop = 0;
 			boxKeystore[0] = 0;//宝箱を開けたときに"○キー"の位置を変更する配列(初期化)
 			boxKeystore[1] = 0;
 			boxKeystore[2] = 0;

@@ -8,7 +8,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int){
 
 	init();
 	load();
-	
+	sound();
 
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0){
 		//ClsDrawScreen();
@@ -35,6 +35,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int){
 		case 5:Result(); break;
 		case 6:Help(); break;
 		}
+
+		PlaySoundMem(gamemusic, DX_PLAYTYPE_BACK, FALSE);
+		
 
 		Update();	//çXêV
 		FPSDraw();	//ï`âÊ

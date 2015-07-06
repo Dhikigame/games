@@ -102,7 +102,7 @@ void Normal(){
 		boxcount++;
 		boxKeystoreN[0][0] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_Q] == 1){
-
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[0][1] == 1 || boxopenN[1][0] == 1){
 				infor = "近くに反応！"; ote++;
 			}
@@ -126,7 +126,7 @@ void Normal(){
 		boxcount++;
 		boxKeystoreN[0][1] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_W] == 1){
-
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[0][0] == 1 || boxopenN[1][1] == 1 || boxopenN[0][2] == 1){
 				infor = "近くに反応！"; ote++;
 			}
@@ -149,7 +149,7 @@ void Normal(){
 		boxcount++;
 		boxKeystoreN[0][2] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_E] == 1){
-
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[0][1] == 1 || boxopenN[1][2] == 1){
 				infor = "近くに反応！"; ote++;
 			}
@@ -172,7 +172,7 @@ void Normal(){
 		boxcount++;
 		boxKeystoreN[1][0] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_A] == 1){
-
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[0][0] == 1 || boxopenN[1][1] == 1 || boxopenN[2][0] == 1){
 				infor = "近くに反応！"; ote++;
 			}
@@ -195,7 +195,7 @@ void Normal(){
 		boxcount++;
 		boxKeystoreN[1][1] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_S] == 1){
-
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[0][1] == 1 || boxopenN[1][0] == 1 || boxopenN[1][2] == 1 || boxopenN[2][1] == 1){
 				infor = "近くに反応！"; ote++;
 			}
@@ -218,7 +218,7 @@ void Normal(){
 		boxcount++;
 		boxKeystoreN[1][2] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_D] == 1){
-
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[1][1] == 1 || boxopenN[0][2] == 1 || boxopenN[2][2] == 1){
 				infor = "近くに反応！"; ote++;
 			}
@@ -241,7 +241,7 @@ void Normal(){
 		boxcount++;
 		boxKeystoreN[2][0] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_Z] == 1){
-
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[1][0] == 1 || boxopenN[2][1] == 1){
 				infor = "近くに反応！"; ote++;
 			}
@@ -263,8 +263,8 @@ void Normal(){
 		}
 		boxcount++;
 		boxKeystoreN[2][1] = 1;
-		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_Z] == 1){
-
+		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_X] == 1){
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[2][0] == 1 || boxopenN[1][1] == 1 || boxopenN[2][2] == 1){
 				infor = "近くに反応！"; ote++;
 			}
@@ -287,7 +287,7 @@ void Normal(){
 		boxcount++;
 		boxKeystoreN[2][2] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_C] == 1){
-
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[2][1] == 1 || boxopenN[1][2] == 1){
 				infor = "近くに反応！"; ote++;
 			}
@@ -348,7 +348,10 @@ void Normal(){
 	}
 
 	if (yes == 0 && boxcount == 3 && x >= -99999 && y >= -99999){
+		if (musicstop == 0)
+			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 		boxflag = 1;
+		musicstop = 1;
 		DrawFormatString(200, 450, Green, "宝箱は見つからなかった・・・（Enterキーで進む）");
 		if (Key[KEY_INPUT_RETURN] == 1){
 			BoxsetN();
@@ -358,6 +361,7 @@ void Normal(){
 			ote = 0;
 			gamecount++;
 			infor = "   ";
+			musicstop = 0;
 			boxKeystoreN[0][0] = 0;
 			boxKeystoreN[0][1] = 0;
 			boxKeystoreN[0][2] = 0;

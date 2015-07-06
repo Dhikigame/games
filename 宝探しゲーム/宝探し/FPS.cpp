@@ -1,5 +1,9 @@
 #include "GV.h"
-
+/*
+FPS制御を行う
+...このモジュールは私が考えて書いたのではなく、ほとんど参考したもののコードそのままです...
+参考：http://dixq.net/g/03_14.html
+*/
 const int N = 60;	//平均を取るサンプル数
 const int FPS = 60;	//設定したFPS
 
