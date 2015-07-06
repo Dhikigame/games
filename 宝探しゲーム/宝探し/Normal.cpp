@@ -93,6 +93,7 @@ void Normal(){
 	if (Key[KEY_INPUT_Q] == 1 && boxflag == 0){
 
 		if (boxopenN[0][0] == 1){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[0][0] = yesbox;
 			yes = 1;
 		}
@@ -117,6 +118,7 @@ void Normal(){
 	if (Key[KEY_INPUT_W] == 1 && boxflag == 0){
 
 		if (boxopenN[0][1] == 1){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[0][1] = yesbox;
 			yes = 1;
 		}
@@ -140,6 +142,7 @@ void Normal(){
 	if (Key[KEY_INPUT_E] == 1 && boxflag == 0){
 
 		if (boxopenN[0][2] == 1){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[0][2] = yesbox;
 			yes = 1;
 		}
@@ -163,6 +166,7 @@ void Normal(){
 	if (Key[KEY_INPUT_A] == 1 && boxflag == 0){
 
 		if (boxopenN[1][0] == 1){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[1][0] = yesbox;
 			yes = 1;
 		}
@@ -186,6 +190,7 @@ void Normal(){
 	if (Key[KEY_INPUT_S] == 1 && boxflag == 0){
 
 		if (boxopenN[1][1] == 1){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[1][1] = yesbox;
 			yes = 1;
 		}
@@ -209,6 +214,7 @@ void Normal(){
 	if (Key[KEY_INPUT_D] == 1 && boxflag == 0){
 
 		if (boxopenN[1][2] == 1){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[1][2] = yesbox;
 			yes = 1;
 		}
@@ -232,6 +238,7 @@ void Normal(){
 	if (Key[KEY_INPUT_Z] == 1 && boxflag == 0){
 
 		if (boxopenN[2][0] == 1){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[2][0] = yesbox;
 			yes = 1;
 		}
@@ -255,6 +262,7 @@ void Normal(){
 	if (Key[KEY_INPUT_X] == 1 && boxflag == 0){
 
 		if (boxopenN[2][1] == 1){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[2][1] = yesbox;
 			yes = 1;
 		}
@@ -278,6 +286,7 @@ void Normal(){
 	if (Key[KEY_INPUT_C] == 1 && boxflag == 0){
 
 		if (boxopenN[2][2] == 1){
+			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[2][2] = yesbox;
 			yes = 1;
 		}
