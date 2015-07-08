@@ -17,7 +17,7 @@ GLOBAL int boxKeystore[6];//    Keyが押されたかどうか判定フラグ（かんたん用）
 GLOBAL int boxKeystoreN[3][3];//Keyが押されたかどうか判定フラグ（ふつう用）
 GLOBAL int boxKeystoreH[4][4];//Keyが押されたかどうか判定フラグ（むずかしい用）
 
-GLOBAL char *infor;
+GLOBAL char *infor;//おてつきした場合上にヒント表示「近くに」「遠くに」
 GLOBAL int boxcount;//何回箱を開いたかカウント
 GLOBAL int boxflag;//宝箱は見つかったよ！等　下に出たら他の箱を開けなくするためのフラグ
 GLOBAL int yes;//yesboxを見つけたときにyes=1にして宝箱は見つかったよ！と表示
@@ -25,4 +25,3 @@ GLOBAL int hit;//何回yesboxを開けたか
 GLOBAL int gamecount;//10回ゲームしたときの何回か
 GLOBAL int ote;//おてつきの回数
 
-GLOBAL int musicstop;//1回だけ箱開けるときの効果音鳴らすためのフラグ

@@ -5,6 +5,8 @@ void load(){
 	FontMenuHandle = CreateFontToHandle(NULL, 15, 3);
 	FontBoxHandle = CreateFontToHandle(NULL, 30, 3);
 	FontBoxHandleN = CreateFontToHandle(NULL, 20, 3);
+	FontBoxHandleH = CreateFontToHandle(NULL, 15, 3);
+	logo = LoadGraph("•ó’T‚µ.png");//ƒ^ƒCƒgƒ‹ƒƒS
 	Handle = LoadGraph("arrow37-032.png");//‰æ–Ê‚Å“®‚©‚·ƒ|ƒCƒ“ƒ^FREE‘fŞ
 	Draw = LoadGraph("futta0796m.png");//”wŒiFREE‘fŞ
 	Draw2 = LoadGraph("beach.png");//”wŒiFREE‘fŞ

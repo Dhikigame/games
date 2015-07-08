@@ -6,6 +6,7 @@ void Result(){
 	//DrawRotaGraph(x, y, 1.0, 0.0, Handle, TRUE);
 	//DrawFormatString( 50, 450, Green, "座標[%d,%d]", x, y );
 	DrawFormatString(120, 145, White, "宝箱を見つけた回数　%d/10", hit);
+	DrawFormatString(370, 145, White, "スコア%d点", score.total);
 	if (0 <= hit&&hit <= 3){
 		DrawStringToHandle(120, 240, "残念！もっと頑張ろう！", White, FontHandle);
 		if (game == 0){
@@ -22,11 +23,13 @@ void Result(){
 		if (Key[KEY_INPUT_RETURN] == 1){
 			hit = 0;
 			gamecount = 1;
+			score.total = 0;
 			Menucount = 1;
 		}
 		if (Key[KEY_INPUT_RSHIFT] == 1){
 			hit = 0;
 			gamecount = 1;
+			score.total = 0;
 			if (game == 0){
 				Menucount = 2;
 			}
@@ -55,10 +58,12 @@ void Result(){
 		if (Key[KEY_INPUT_RETURN] == 1){
 			hit = 0;
 			gamecount = 1;
+			score.total = 0;
 			Menucount = 1;
 		}
 		if (Key[KEY_INPUT_RSHIFT] == 1){
 			hit = 0;
+			score.total = 0;
 			gamecount = 1;
 			if (game == 0){
 				Menucount = 2;
@@ -90,10 +95,12 @@ void Result(){
 		if (Key[KEY_INPUT_RETURN] == 1){
 			hit = 0;
 			gamecount = 1;
+			score.total = 0;
 			Menucount = 1;
 		}
 		if (Key[KEY_INPUT_RSHIFT] == 1){
 			hit = 0;
+			score.total = 0;
 			gamecount = 1;
 			if (game == 0){
 				Menucount = 2;
@@ -124,11 +131,13 @@ void Result(){
 
 		if (Key[KEY_INPUT_RETURN] == 1){
 			hit = 0;
+			score.total = 0;
 			gamecount = 1;
 			Menucount = 1;
 		}
 		if (Key[KEY_INPUT_RSHIFT] == 1){
 			hit = 0;
+			score.total = 0;
 			gamecount = 1;
 			if (game == 0){
 				Menucount = 2;

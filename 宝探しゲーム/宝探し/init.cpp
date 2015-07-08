@@ -2,6 +2,8 @@
 
 void init(){
 	Menucount = 1;
+	logorate = 1.15;//タイトルロゴの大きさ
+	big = 0;
 	/*初期値は1でMenu関数を実行するように設定
 	    case 1:Menu();	Menucount = 1
 		case 2:Easy();	Menucount = 2
@@ -17,5 +19,6 @@ void init(){
 	gamecount = 1;//10回ゲームしたときの何回か
 	ote = 0;//おてつきの回数
 	x = 320, y = 240;//ポインタ初期座標
+	score.total = 0;//スコア初期化
 	musicstop = 0;//1回だけ箱開けるときの効果音鳴らすためのフラグ
 }

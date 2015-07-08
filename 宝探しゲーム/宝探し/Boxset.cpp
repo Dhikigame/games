@@ -77,21 +77,22 @@ void BoxsetN(){
 	//3×3でセット
 		i = GetRand(2);
 		j = GetRand(2);
-		boxopenN[i][j] = 1;
+		boxopenN[i][j] = 1;//boxopenNが1のものがyesboxになる
 
 }
 //Hard
 void BoxsetH(){
-	//4×4でセット
-	i = GetRand(3);
-	j = GetRand(3);
-
-	boxopenN[i][j] = 1;//boxopenHが1のものがyesboxになる
 
 	for (i = 0; i <= 3; i++){
 		for (j = 0; j <= 3; j++){
-			if (boxopenN[i][j] != 1)
-				boxopenN[i][j] = 0;//boxopenHが1以外のものがnoboxになる
+				boxopenH[i][j] = 0;//初期化
 		}
 	}
+	//i = 0, j = 0;
+	//4×4でセット
+		i = GetRand(3);
+		j = GetRand(3);
+		boxopenH[i][j] = 1;//boxopenHが1のものがyesboxになる
+
+	
 }

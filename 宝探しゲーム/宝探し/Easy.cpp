@@ -24,6 +24,16 @@ void Easy(){
 	DrawRotaGraph(320, 300, 1.0, 0.0, boxstore5, TRUE);
 	DrawRotaGraph(520, 300, 1.0, 0.0, boxstore6, TRUE);
 	
+	/*//デバッグ用　Boxsetのランダム配置
+	if (Key[KEY_INPUT_A] == 1){
+		BoxsetH();
+	}*/
+	//RSHIFTキーでタイトルに戻る
+	if (Key[KEY_INPUT_RSHIFT] == 1){
+		init();
+	}
+
+
 	//DrawRotaGraph(x, y, 1.0, 0.0, Handle, TRUE);
 	//デバッグ用　boxopenの配置確認
 	//DrawFormatString( 0, 450, White, "座標[%d,%d],%d,%d,%d,%d,%d,%d",
@@ -31,6 +41,8 @@ void Easy(){
 	DrawFormatString(280, 20, Green, "%s", infor);//ヒント出力　近くに反応！または遠くに反応！
 	DrawFormatString(35, 415, White, "%d/10回目", gamecount);//１０回ゲーム行ったときの何回か
 	DrawFormatString(35, 435, White, "おてつき　%d/2", ote);//おてつきは２回まで
+	DrawFormatString(550, 410, White, "スコア");//スコア出力
+	DrawFormatString(550, 430, White, "%d", score.total);//スコア出力
 	
 	if (boxKeystore[0] == 0)
 		DrawStringToHandle(90, 50, "Aキー", White, FontBoxHandle);
@@ -62,27 +74,28 @@ void Easy(){
 	else if (boxKeystore[5] == 1)
 		DrawStringToHandle(490, 225, "Cキー", White, FontBoxHandle);
 
-	//67502085はyesboxのときの乱数、67436548はnoboxのときの乱数(新しい環境で制作しなおしたので値が変わっている)
+	//67567622はyesboxのときの乱数、67502085はnoboxのときの乱数(新しい環境で制作しなおしたので値が変わっている)
 
 	//それぞれキーで選択したときyesboxかnoboxか判定し、おてつきの場合はinforでヒント出す
 	if (Key[KEY_INPUT_A] == 1 && boxflag == 0){
 		
-		if (boxopen[0] == 67502085){
+		if (boxopen[0] == 67567622){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstore1 = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
-		if (boxopen[0] == 67436548){
+		if (boxopen[0] == 67502085){
 			boxstore1 = nobox;
 		}
 		boxcount++;
 		boxKeystore[0] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_A] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
-			if (boxopen[1] == 67502085 || boxopen[3] == 67502085){
+			if (boxopen[1] == 67567622 || boxopen[3] == 67567622){
 				infor = "近くに反応！"; ote++;
 			}
-			if (boxopen[2] == 67502085 || boxopen[4] == 67502085 || boxopen[5] == 67502085){
+			if (boxopen[2] == 67567622 || boxopen[4] == 67567622 || boxopen[5] == 67567622){
 				infor = "遠くに反応！"; ote++;
 			}
 
@@ -92,22 +105,23 @@ void Easy(){
 
 	if (Key[KEY_INPUT_S] == 1 && boxflag == 0){
 		
-		if (boxopen[1] == 67502085){
+		if (boxopen[1] == 67567622){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstore2 = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
-		if (boxopen[1] == 67436548){
+		if (boxopen[1] == 67502085){
 			boxstore2 = nobox;
 		}
 		boxcount++;
 		boxKeystore[1] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_S] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
-			if (boxopen[0] == 67502085 || boxopen[2] == 67502085 || boxopen[4] == 67502085){
+			if (boxopen[0] == 67567622 || boxopen[2] == 67567622 || boxopen[4] == 67567622){
 				infor = "近くに反応！"; ote++;
 			}
-			if (boxopen[3] == 67502085 || boxopen[5] == 67502085){
+			if (boxopen[3] == 67567622 || boxopen[5] == 67567622){
 				infor = "遠くに反応！"; ote++;
 			}
 
@@ -116,22 +130,23 @@ void Easy(){
 
 	if (Key[KEY_INPUT_D] == 1 && boxflag == 0){
 		
-		if (boxopen[2] == 67502085){
+		if (boxopen[2] == 67567622){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstore3 = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
-		if (boxopen[2] == 67436548){
+		if (boxopen[2] == 67502085){
 			boxstore3 = nobox;
 		}
 		boxcount++;
 		boxKeystore[2] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_D] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
-			if (boxopen[1] == 67502085 || boxopen[5] == 67502085){
+			if (boxopen[1] == 67567622 || boxopen[5] == 67567622){
 				infor = "近くに反応！"; ote++;
 			}
-			if (boxopen[0] == 67502085 || boxopen[3] == 67502085 || boxopen[4] == 67502085){
+			if (boxopen[0] == 67567622 || boxopen[3] == 67567622 || boxopen[4] == 67567622){
 				infor = "遠くに反応！"; ote++;
 			}
 
@@ -140,22 +155,23 @@ void Easy(){
 
 	if (Key[KEY_INPUT_Z] == 1 && boxflag == 0){
 		
-		if (boxopen[3] == 67502085){
+		if (boxopen[3] == 67567622){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstore4 = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
-		if (boxopen[3] == 67436548){
+		if (boxopen[3] == 67502085){
 			boxstore4 = nobox;
 		}
 		boxcount++;
 		boxKeystore[3] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_Z] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
-			if (boxopen[0] == 67502085 || boxopen[4] == 67502085){
+			if (boxopen[0] == 67567622 || boxopen[4] == 67567622){
 				infor = "近くに反応！"; ote++;
 			}
-			if (boxopen[1] == 67502085 || boxopen[2] == 67502085 || boxopen[5] == 67502085){
+			if (boxopen[1] == 67567622 || boxopen[2] == 67567622 || boxopen[5] == 67567622){
 				infor = "遠くに反応！"; ote++;
 			}
 
@@ -164,22 +180,23 @@ void Easy(){
 
 	if (Key[KEY_INPUT_X] == 1 && boxflag == 0){
 		
-		if (boxopen[4] == 67502085){
+		if (boxopen[4] == 67567622){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstore5 = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
-		if (boxopen[4] == 67436548){
+		if (boxopen[4] == 67502085){
 			boxstore5 = nobox;
 		}
 		boxcount++;
 		boxKeystore[4] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_X] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
-			if (boxopen[1] == 67502085 || boxopen[3] == 67502085 || boxopen[5] == 67502085){
+			if (boxopen[1] == 67567622 || boxopen[3] == 67567622 || boxopen[5] == 67567622){
 				infor = "近くに反応！"; ote++;
 			}
-			if (boxopen[0] == 67502085 || boxopen[2] == 67502085){
+			if (boxopen[0] == 67567622 || boxopen[2] == 67567622){
 				infor = "遠くに反応！"; ote++;
 			}
 
@@ -188,22 +205,23 @@ void Easy(){
 
 	if (Key[KEY_INPUT_C] == 1 && boxflag == 0){
 		
-		if (boxopen[5] == 67502085){
+		if (boxopen[5] == 67567622){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstore6 = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
-		if (boxopen[5] == 67436548){
+		if (boxopen[5] == 67502085){
 			boxstore6 = nobox;
 		}
 		boxcount++;
 		boxKeystore[5] = 1;
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_C] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
-			if (boxopen[2] == 67502085 || boxopen[4] == 67502085){
+			if (boxopen[2] == 67567622 || boxopen[4] == 67567622){
 				infor = "近くに反応！"; ote++;
 			}
-			if (boxopen[0] == 67502085 || boxopen[1] == 67502085 || boxopen[3] == 67502085){
+			if (boxopen[0] == 67567622 || boxopen[1] == 67567622 || boxopen[3] == 67567622){
 				infor = "遠くに反応！"; ote++;
 			}
 
@@ -214,6 +232,11 @@ void Easy(){
 	if (yes == 1 && boxcount == 1 && x >= -99999 && y >= -99999){
 		boxflag = 1;
 		DrawFormatString(200, 450, Green, "宝箱発見！（Enterキーで進む）");
+		if (boxcount == 1 && score.flag == 1){
+			score.boxcount = 1;
+			Score();
+		}
+		score.flag = 0;
 		if (Key[KEY_INPUT_RETURN] == 1){
 			Boxset();
 			boxcount = 0;
@@ -235,6 +258,15 @@ void Easy(){
 	if (yes == 1 && boxcount >= 2 && boxcount <= 3 && x >= -99999 && y >= -99999){
 		boxflag = 1;
 		DrawFormatString(200, 450, Green, "宝箱は見つかったよ！（Enterキーで進む）");
+		if (boxcount == 2 && score.flag == 1){
+			score.boxcount = 2;
+			Score();
+		}
+		if (boxcount == 3 && score.flag == 1){
+			score.boxcount = 3;
+			Score();
+		}
+		score.flag = 0;
 		if (Key[KEY_INPUT_RETURN] == 1){
 			Boxset();
 			boxcount = 0;

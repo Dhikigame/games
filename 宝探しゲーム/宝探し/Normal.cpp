@@ -22,9 +22,9 @@ void Normal(){
 		k = 130*i;
 		for (j = 0; j <= 2; j++){
 			l = 200 * j;
-			if (j== 0)
+			if (j == 0)
 				DrawRotaGraph(120+l, 90+k, 0.8, 0.0, boxstoreN[i][j], TRUE);
-			if (j== 1)
+			if (j == 1)
 				DrawRotaGraph(120+l, 90+k, 0.8, 0.0, boxstoreN[i][j], TRUE);
 			if (j == 2)
 				DrawRotaGraph(120+l, 90+k, 0.8, 0.0, boxstoreN[i][j], TRUE);
@@ -35,6 +35,10 @@ void Normal(){
 		BoxsetN();
 	}
 	*/
+	//RSHIFTキーでタイトルに戻る
+	if (Key[KEY_INPUT_RSHIFT] == 1){
+		init();
+	}
 
 	//DrawRotaGraph(x, y, 1.0, 0.0, Handle, TRUE);
 
@@ -48,6 +52,8 @@ void Normal(){
 	DrawFormatString(280, 20, Green, "%s", infor);//ヒント出力　近くに反応！または遠くに反応！
 	DrawFormatString(35, 415, White, "%d/10回目", gamecount);//１０回ゲーム行ったときの何回か
 	DrawFormatString(35, 435, White, "おてつき　%d/2", ote);//おてつきは２回まで(実装変更されました)
+	DrawFormatString(550, 410, White, "スコア");//スコア出力
+	DrawFormatString(550, 430, White, "%d", score.total);//スコア出力
 	//1はyesboxのときの乱数、0はnoboxのときの乱数(かんたんとは実装が違う)
 
 	if (boxKeystoreN[0][0] == 0)
@@ -96,6 +102,7 @@ void Normal(){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[0][0] = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
 		if (boxopenN[0][0] == 0){
 			boxstoreN[0][0] = nobox;
@@ -105,7 +112,7 @@ void Normal(){
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_Q] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[0][1] == 1 || boxopenN[1][0] == 1){
-				infor = "近くに反応！"; ote++;
+				infor = "近くに反応！"; //ote++;
 			}
 			else if (boxopenN[0][0] == 1)
 				infor = " ";
@@ -121,6 +128,7 @@ void Normal(){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[0][1] = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
 		if (boxopenN[0][1] == 0){
 			boxstoreN[0][1] = nobox;
@@ -130,7 +138,7 @@ void Normal(){
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_W] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[0][0] == 1 || boxopenN[1][1] == 1 || boxopenN[0][2] == 1){
-				infor = "近くに反応！"; ote++;
+				infor = "近くに反応！"; //ote++;
 			}
 			else if (boxopenN[0][1] == 1)
 				infor = " ";
@@ -145,6 +153,7 @@ void Normal(){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[0][2] = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
 		if (boxopenN[0][2] == 0){
 			boxstoreN[0][2] = nobox;
@@ -154,7 +163,7 @@ void Normal(){
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_E] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[0][1] == 1 || boxopenN[1][2] == 1){
-				infor = "近くに反応！"; ote++;
+				infor = "近くに反応！"; //ote++;
 			}
 			else if (boxopenN[0][2] == 1)
 				infor = " ";
@@ -169,6 +178,7 @@ void Normal(){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[1][0] = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
 		if (boxopenN[1][0] == 0){
 			boxstoreN[1][0] = nobox;
@@ -178,7 +188,7 @@ void Normal(){
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_A] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[0][0] == 1 || boxopenN[1][1] == 1 || boxopenN[2][0] == 1){
-				infor = "近くに反応！"; ote++;
+				infor = "近くに反応！"; //ote++;
 			}
 			else if (boxopenN[1][0] == 1)
 				infor = " ";
@@ -193,6 +203,7 @@ void Normal(){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[1][1] = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
 		if (boxopenN[1][1] == 0){
 			boxstoreN[1][1] = nobox;
@@ -202,7 +213,7 @@ void Normal(){
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_S] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[0][1] == 1 || boxopenN[1][0] == 1 || boxopenN[1][2] == 1 || boxopenN[2][1] == 1){
-				infor = "近くに反応！"; ote++;
+				infor = "近くに反応！"; //ote++;
 			}
 			else if (boxopenN[1][1] == 1)
 				infor = " ";
@@ -217,6 +228,7 @@ void Normal(){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[1][2] = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
 		if (boxopenN[1][2] == 0){
 			boxstoreN[1][2] = nobox;
@@ -226,7 +238,7 @@ void Normal(){
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_D] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[1][1] == 1 || boxopenN[0][2] == 1 || boxopenN[2][2] == 1){
-				infor = "近くに反応！"; ote++;
+				infor = "近くに反応！"; //ote++;
 			}
 			else if (boxopenN[1][2] == 1)
 				infor = " ";
@@ -241,6 +253,7 @@ void Normal(){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[2][0] = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
 		if (boxopenN[2][0] == 0){
 			boxstoreN[2][0] = nobox;
@@ -250,7 +263,7 @@ void Normal(){
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_Z] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[1][0] == 1 || boxopenN[2][1] == 1){
-				infor = "近くに反応！"; ote++;
+				infor = "近くに反応！"; //ote++;
 			}
 			else if (boxopenN[2][0] == 1)
 				infor = " ";
@@ -265,6 +278,7 @@ void Normal(){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[2][1] = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
 		if (boxopenN[2][1] == 0){
 			boxstoreN[2][1] = nobox;
@@ -274,7 +288,7 @@ void Normal(){
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_X] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[2][0] == 1 || boxopenN[1][1] == 1 || boxopenN[2][2] == 1){
-				infor = "近くに反応！"; ote++;
+				infor = "近くに反応！"; //ote++;
 			}
 			else if (boxopenN[2][1] == 1)
 				infor = " ";
@@ -289,6 +303,7 @@ void Normal(){
 			PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 			boxstoreN[2][2] = yesbox;
 			yes = 1;
+			score.flag = 1;
 		}
 		if (boxopenN[2][2] == 0){
 			boxstoreN[2][2] = nobox;
@@ -298,7 +313,7 @@ void Normal(){
 		if (boxcount >= 1 && boxcount <= 2 && Key[KEY_INPUT_C] == 1){
 			PlaySoundMem(boxopensound, DX_PLAYTYPE_BACK, TRUE);
 			if (boxopenN[2][1] == 1 || boxopenN[1][2] == 1){
-				infor = "近くに反応！"; ote++;
+				infor = "近くに反応！"; //ote++;
 			}
 			else if (boxopenN[2][2] == 1)
 				infor = " ";
@@ -310,6 +325,11 @@ void Normal(){
 	//yesbox見つけた場合とおてつきすべて使って見つからなかった場合に文字列を出力
 	if (yes == 1 && boxcount == 1 && x >= -99999 && y >= -99999){
 		boxflag = 1;
+		if (boxcount == 1 && score.flag == 1){
+			score.boxcount = 1;
+			Score();
+		}
+		score.flag = 0;
 		DrawFormatString(200, 450, Green, "宝箱発見！（Enterキーで進む）");
 		if (Key[KEY_INPUT_RETURN] == 1){
 			BoxsetN();
@@ -320,20 +340,25 @@ void Normal(){
 			gamecount++;
 			ote = 0;
 			infor = "   ";
-			boxKeystoreN[0][0] = 0;
-			boxKeystoreN[0][1] = 0;
-			boxKeystoreN[0][2] = 0;
-			boxKeystoreN[1][0] = 0;
-			boxKeystoreN[1][1] = 0;
-			boxKeystoreN[1][2] = 0;
-			boxKeystoreN[2][0] = 0;
-			boxKeystoreN[2][1] = 0;
-			boxKeystoreN[2][2] = 0;
+			for (i = 0; i <= 2; i++){
+				for (j = 0; j <= 2; j++){
+					boxKeystoreN[i][j] = 0;//宝箱を開けたときに"○キー"の位置を変更する配列（ふつう用)
+				}
+			}
 		}
 	}
 
 	if (yes == 1 && boxcount >= 2 && boxcount <= 3 && x >= -99999 && y >= -99999){
 		boxflag = 1;
+		if (boxcount == 2 && score.flag == 1){
+			score.boxcount = 2;
+			Score();
+		}
+		if (boxcount == 3 && score.flag == 1){
+			score.boxcount = 3;
+			Score();
+		}
+		score.flag = 0;
 		DrawFormatString(200, 450, Green, "宝箱は見つかったよ！（Enterキーで進む）");
 		if (Key[KEY_INPUT_RETURN] == 1){
 			BoxsetN();
@@ -344,15 +369,11 @@ void Normal(){
 			gamecount++;
 			ote = 0;
 			infor = "   ";
-			boxKeystoreN[0][0] = 0;
-			boxKeystoreN[0][1] = 0;
-			boxKeystoreN[0][2] = 0;
-			boxKeystoreN[1][0] = 0;
-			boxKeystoreN[1][1] = 0;
-			boxKeystoreN[1][2] = 0;
-			boxKeystoreN[2][0] = 0;
-			boxKeystoreN[2][1] = 0;
-			boxKeystoreN[2][2] = 0;
+			for (i = 0; i <= 2; i++){
+				for (j = 0; j <= 2; j++){
+					boxKeystoreN[i][j] = 0;//宝箱を開けたときに"○キー"の位置を変更する配列（ふつう用)
+				}
+			}
 		}
 	}
 
@@ -371,15 +392,11 @@ void Normal(){
 			gamecount++;
 			infor = "   ";
 			musicstop = 0;
-			boxKeystoreN[0][0] = 0;
-			boxKeystoreN[0][1] = 0;
-			boxKeystoreN[0][2] = 0;
-			boxKeystoreN[1][0] = 0;
-			boxKeystoreN[1][1] = 0;
-			boxKeystoreN[1][2] = 0;
-			boxKeystoreN[2][0] = 0;
-			boxKeystoreN[2][1] = 0;
-			boxKeystoreN[2][2] = 0;
+			for (i = 0; i <= 2; i++){
+				for (j = 0; j <= 2; j++){
+					boxKeystoreN[i][j] = 0;//宝箱を開けたときに"○キー"の位置を変更する配列（ふつう用)
+				}
+			}
 		}
 	}
 

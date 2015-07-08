@@ -3,6 +3,7 @@
 
 void Menu(){
 
+
 	MenuElement_t MenuElement[4] = {
 		{ 170, 300, "かんたん" }, // タグの中身の順番で格納される。
 		{ 280, 300, "ふつう" },
@@ -13,15 +14,27 @@ void Menu(){
 
 	DrawRotaGraph(320, 240, 1.0, 0.0, Draw, TRUE);
 	//DrawRotaGraph(x, y, 1.0, 0.0, Handle, TRUE);
-	DrawStringToHandle(50, 140, "            宝探しゲーム", White, FontHandle);
-	DrawStringToHandle(270, 200, "var2.0", White, FontHandle);
-	DrawFormatString(130, 450, Green, "どれかキーを押してね！");
+	//DrawStringToHandle(50, 140, "            宝探しゲーム", White, FontHandle);
+	DrawStringToHandle(270, 200, "var2.1", White, FontHandle);
+	DrawFormatString(230, 450, Green, "どれかキーを押してね！");
 	//（デバッグ用）DrawFormatString( 50, 450, Green, "座標[%d,%d]", x, y ); 
+
+	DrawRotaGraph(320, 240, logorate, 0.0, logo, TRUE); //タイトルロゴの描画
+	/*if (big == 0){
+		logorate += 0.01;
+		if (logorate == 1.25)
+			big = 1;
+	}
+	if (big == 1){
+		logorate -= 0.01;
+		if (logorate == 1.15)
+			big = 0;
+	}タイトルロゴを拡大縮小するアニメーション作ろうとしたがうまくいってない*/
 
 	DrawStringToHandle(170, 320, "Eキー", White, FontMenuHandle);
 	DrawStringToHandle(280, 320, "Nキー", White, FontMenuHandle);
 	DrawStringToHandle(380, 320, "Hキー", White, FontMenuHandle);
-	DrawStringToHandle(380, 335, "工事中", White, FontMenuHandle);
+	//DrawStringToHandle(380, 335, "工事中", White, FontMenuHandle);
 	DrawStringToHandle(280, 370, "Spaceキー", White, FontMenuHandle);
 
 	for (int i = 0; i<4; i++){ // メニュー項目を描画
@@ -49,6 +62,7 @@ void Menu(){
 		Menucount = 6;
 	}*/
 	if (Key[KEY_INPUT_E] == 1){
+		PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 		Boxset();//空箱、宝箱等の場所の位置を決める
 		infor = "   ";
 		game = 0;
@@ -57,6 +71,7 @@ void Menu(){
 			boxKeystore[i] = 0;//宝箱を開けたときに"○キー"の位置を変更する配列（かんたん用)
 	}
 	if (Key[KEY_INPUT_N] == 1){
+		PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 		BoxsetN();//空箱、宝箱等の場所の位置を決める 
 		infor = "   ";
 		game = 1;
@@ -68,6 +83,7 @@ void Menu(){
 		}
 	}
 	if (Key[KEY_INPUT_H] == 1){
+		PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 		BoxsetH();//空箱、宝箱等の場所の位置を決める
 		infor = "   ";
 		game = 2;
@@ -79,6 +95,7 @@ void Menu(){
 		}
 	}
 	if (Key[KEY_INPUT_SPACE] == 1){
+		PlaySoundMem(boxfoundsound, DX_PLAYTYPE_BACK, TRUE);
 		Menucount = 6;
 	}
 }

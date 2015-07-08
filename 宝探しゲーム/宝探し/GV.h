@@ -11,6 +11,8 @@
 #include "func.h"
 #include "Menu.h"
 #include "box.h"
+#include "score.h"
+
 /*
 #include <stdlib.h>
 #include <math.h>
@@ -28,6 +30,7 @@
 		Hel//6
 	};
 }*/
+
 GLOBAL char Key[256];
 
 GLOBAL int Menucount;
@@ -36,17 +39,19 @@ GLOBAL int Menucount;
 
 GLOBAL int FontHandle;
 GLOBAL int FontMenuHandle;
-GLOBAL int FontBoxHandle;
-GLOBAL int FontBoxHandleN;
+GLOBAL int FontBoxHandle;//ゲーム中○キーとある文字の大きさの変更（かんたん）
+GLOBAL int FontBoxHandleN;//ゲーム中○キーとある文字の大きさの変更（ふつう）
+GLOBAL int FontBoxHandleH;//ゲーム中○キーとある文字の大きさの変更（むずかしい）
+GLOBAL int logo;//タイトルロゴ
 GLOBAL int Handle;//画面で動かすポインタFREE素材
 GLOBAL int Draw;//背景FREE素材
 GLOBAL int Draw2;//背景FREE素材
 GLOBAL int box;//自分で描いた宝箱の絵（下手糞）
-GLOBAL int nobox;
-GLOBAL int yesbox;
-GLOBAL int bombbox;
-GLOBAL int Green;
-GLOBAL int White;
+GLOBAL int nobox;//空の宝箱
+GLOBAL int yesbox;//宝の宝箱
+GLOBAL int bombbox;//爆弾の宝箱（まだこれを使ったゲームをできていない）
+GLOBAL int Green;//文字の色が緑
+GLOBAL int White;//文字の色が白
 
 GLOBAL int gamemusic;
 GLOBAL int boxopensound;
@@ -59,4 +64,6 @@ GLOBAL int x, y;//ポインタ座標
 
 GLOBAL int game;//gameが0のときかんたん、1のときふつう、2のときむずかしい
 
+GLOBAL Score_t score;//スコア構造体
 
+GLOBAL int musicstop;//1回だけ箱開けるときの効果音鳴らすためのフラグ
